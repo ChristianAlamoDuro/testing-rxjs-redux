@@ -1,0 +1,41 @@
+<div class="pokemon-container">
+  <div class="pokemons-list">
+    <button (click)="getMorePokemons()">Traer más</button>
+    <button (click)="subscribeTest()">Test subscribe</button>
+    <div
+      class="pokemon-item-list"
+      *ngFor="let pokemon of pokemons$ | async"
+      (click)="getPokemonInfo(pokemon)"
+    >
+      pokemon name: {{ pokemon.name }}
+    </div>
+  </div>
+  <div class="pokemon-selected">
+    <div *ngIf="pokemonSelected$ | async as pokemon; else notPokemon">
+      <div class="pokemon-selected-data">
+        <div class="pokemon-image">
+          <img [src]="pokemon.sprites.front_shiny" [alt]="pokemon.name" />
+        </div>
+        <div class="pokemon-data">
+          <p>pokemon name: {{ pokemon.name }}</p>
+          <p>pokemon id: {{ pokemon.id }}</p>
+          <p>pokemon height: {{ pokemon.height }}</p>
+          <p>pokemon weight: {{ pokemon.weight }}</p>
+          <p>pokemon base experience: {{ pokemon.base_experience | json }}</p>
+        </div>
+      </div>
+    </div>
+    <ng-template #notPokemon> No hay ningún pokemon seleccionado </ng-template>
+  </div>
+</div>
+
+<div class="resume">
+  Probando el uso de observables, en este ejemplo vemos como tenemos un
+  observable que nos trae los pokemons, y otro que nos trae la información de un
+  pokemon en particular. <br />
+
+  Hemos guardado las el valor de BehaviorSubject en un observable, y le hemos
+  cambiado el un nombre para comprobar que podemos cambiar el valor de la
+  información del observable pero no el del BehaviorSubject del servicio, que lo
+  hemos comprobado a traves del boton <br />
+</div>
