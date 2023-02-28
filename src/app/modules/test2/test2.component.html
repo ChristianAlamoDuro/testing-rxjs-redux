@@ -1,0 +1,27 @@
+<div class="test2">
+  <h1>Personajes de Star Wars</h1>
+  <button (click)="addNewCharacter()">Añadir nuevo personaje</button>
+  <button (click)="addNewPlanet()">Añadir nuevo planeta</button>
+  <div class="lists">
+    <div class="characters-list">
+      <ng-container *ngFor="let character of characters$ | async">
+        <p>Nombre: {{ character.name }}</p>
+      </ng-container>
+    </div>
+    <div class="planets-list">
+      <ng-container *ngFor="let planet of planets$ | async">
+        <p>Nombre: {{ planet.name }}</p>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="missions">
+    <h2>Misiones</h2>
+    <ng-container *ngFor="let mission of missions$ | async">
+      <div class="mission">
+        <p>Jefe: {{ mission.boss }}</p>
+        <p>Planeta: {{ mission.planet }}</p>
+      </div>
+    </ng-container>
+  </div>
+</div>

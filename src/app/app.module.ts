@@ -1,27 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Routes } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Test1Module } from './modules/test1/test1.module';
-
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'test1',
-  },
-  {
-    path: 'test1',
-    loadChildren: () =>
-      import('./modules/test1/test1.module').then((m) => m.Test1Module),
-  },
-];
+import { Test2Module } from './modules/test2/test2.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, Test1Module, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    Test1Module,
+    HttpClientModule,
+    Test2Module,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
