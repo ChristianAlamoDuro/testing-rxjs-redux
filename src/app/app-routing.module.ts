@@ -17,6 +17,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/test2/test2.module').then((m) => m.Test2Module),
   },
+  {
+    path: 'ngrx',
+    loadChildren: () =>
+      import('./modules/ngrx/ngrx.module').then((m) => m.NgrxModule),
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,8 @@
+<div class="pokemons-container">
+  <button (click)="getPokemonById()">Obtener pokemon info</button>
+  <div class="pokemon-list">
+    <div class="pokemons__item" *ngFor="let pokemon of pokemons$ | async">
+      <p>{{ pokemon.name }}</p>
+    </div>
+  </div>
+</div>
