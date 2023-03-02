@@ -7,6 +7,12 @@ export const GetPlanetsDocument = gql`
     planets {
       name
       id
+      filmConnection {
+        films {
+          id
+          title
+        }
+      }
     }
   }
 }

@@ -1309,6 +1309,13 @@ type GetPlanetsQuery = (
     & { planets?: Maybe<Array<Maybe<(
       { __typename?: 'Planet' }
       & Pick<Planet, 'name' | 'id'>
+      & { filmConnection?: Maybe<(
+        { __typename?: 'PlanetFilmsConnection' }
+        & { films?: Maybe<Array<Maybe<(
+          { __typename?: 'Film' }
+          & Pick<Film, 'id' | 'title'>
+        )>>> }
+      )> }
     )>>> }
   )> }
 );

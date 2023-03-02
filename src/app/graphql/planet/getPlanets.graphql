@@ -1,8 +1,14 @@
 query getPlanets {
-	allPlanets {
-		planets {
-			name
+  allPlanets {
+    planets {
+      name
       id
-		}
-	}
+      filmConnection {
+        films {
+          id
+          title
+        }
+      }
+    }
+  }
 }

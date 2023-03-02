@@ -1,8 +1,14 @@
 <div class="pokemons-container">
-  <button (click)="getPokemonById()">Obtener pokemon info</button>
   <div class="pokemon-list">
     <div class="pokemons__item" *ngFor="let planet of planets$ | async">
-      <p>{{ planet.name }}</p>
+      <p
+        [ngStyle]="{
+          color: planet.isSelectedByUser ? 'red' : 'black'
+        }"
+        (click)="setSelectedPlanetById(planet.id)"
+      >
+        {{ planet.name }}
+      </p>
     </div>
   </div>
 </div>

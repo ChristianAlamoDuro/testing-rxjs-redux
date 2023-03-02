@@ -1,10 +1,17 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { getPlanets, getPlanetsSuccessfully } from './planet.actions';
+import {
+  getPlanets,
+  getPlanetsSuccessfully,
+  userSelectPlanetById,
+  userSelectPlanetByIdSuccessfully
+} from './planet.actions';
 
-export interface PlanetNormalized extends Planet {}
+export interface PlanetNormalized extends Planet {
+  isSelectedByUser?: boolean;
+}
 
-export interface PlanetState extends EntityState<any> {
+export interface PlanetState extends EntityState<PlanetNormalized> {
   loading: boolean;
   loadingMessage: string;
 }
@@ -23,6 +30,10 @@ const planetReducer = createReducer(
   on(getPlanets, (state) => ({ ...state, loading: true })),
   on(getPlanetsSuccessfully, (state, { planets }) =>
     planetAdapter.upsertMany(planets as any, { ...state, loading: false })
+  ),
+  on(userSelectPlanetById, (state) => ({ ...state, loading: true })),
+  on(userSelectPlanetByIdSuccessfully, (state, { planet }) =>
+    planetAdapter.upsertOne(planet, { ...state, loading: false })
   )
 );
 

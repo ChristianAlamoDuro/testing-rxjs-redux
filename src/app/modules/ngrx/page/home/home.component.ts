@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { getPlanets } from 'src/app/core/store/planet/planet.actions';
+import { Observable, tap } from 'rxjs';
+import {
+  getPlanets,
+  userSelectPlanetById
+} from 'src/app/core/store/planet/planet.actions';
+import { PlanetNormalized } from 'src/app/core/store/planet/planet.reducer';
 import { selectAllPlanets } from 'src/app/core/store/planet/planet.selectors';
 
 @Component({
@@ -10,16 +14,20 @@ import { selectAllPlanets } from 'src/app/core/store/planet/planet.selectors';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  planets$!: Observable<Planet[]>;
+  planets$!: Observable<PlanetNormalized[]>;
 
-  constructor(private _store: Store<Store>) {}
+  constructor(private _store: Store) {}
 
   ngOnInit(): void {
     this._store.dispatch(getPlanets({}));
-    this.planets$ = this._store.pipe(select(selectAllPlanets));
+
+    this.planets$ = this._store.pipe(
+      select(selectAllPlanets),
+      tap((i) => console.log(i))
+    );
   }
 
-  getPokemonById() {
-    // this._store.dispatch(getPokemonById({ pokemonsId: 151 }));
+  setSelectedPlanetById(planetId: string): void {
+    this._store.dispatch(userSelectPlanetById({ planetId }));
   }
 }
