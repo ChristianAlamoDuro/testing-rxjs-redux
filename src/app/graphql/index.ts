@@ -6,6 +6,7 @@ export const GetPlanetsDocument = gql`
   allPlanets {
     planets {
       name
+      id
     }
   }
 }

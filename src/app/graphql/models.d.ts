@@ -1308,7 +1308,7 @@ type GetPlanetsQuery = (
     { __typename?: 'PlanetsConnection' }
     & { planets?: Maybe<Array<Maybe<(
       { __typename?: 'Planet' }
-      & Pick<Planet, 'name'>
+      & Pick<Planet, 'name' | 'id'>
     )>>> }
   )> }
 );
