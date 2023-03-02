@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Apollo, gql } from 'apollo-angular';
 import {
-  getPokemonById,
-  getPokemons
-} from 'src/app/core/store/pokemon/pokemon.actions';
-import { selectAllPokemons } from 'src/app/core/store/pokemon/pokemon.selectors';
+    getPokemonById,
+    getPokemons
+} from 'src/app/core/store/planet/pokemon.actions';
+import { selectAllPokemons } from 'src/app/core/store/planet/pokemon.selectors';
 
 @Component({
   selector: 'app-home',

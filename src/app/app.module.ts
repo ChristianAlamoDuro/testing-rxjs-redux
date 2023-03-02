@@ -7,12 +7,12 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PokemonEffects } from './core/store/pokemon/pokemon.effects';
-import * as pokemonReducer from './core/store/pokemon/pokemon.reducer';
+import { PokemonEffects } from './core/store/planet/pokemon.effects';
+import * as pokemonReducer from './core/store/planet/pokemon.reducer';
+import { GraphQLModule } from './graphql.module';
 import { NgrxModule } from './modules/ngrx/ngrx.module';
 import { Test1Module } from './modules/test1/test1.module';
 import { Test2Module } from './modules/test2/test2.module';
-import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [AppComponent],
