@@ -1,14 +1,15 @@
-<div class="pokemons-container">
-  <div class="pokemon-list">
-    <div class="pokemons__item" *ngFor="let planet of planets$ | async">
-      <p
-        [ngStyle]="{
-          color: planet.isSelectedByUser ? 'red' : 'black'
-        }"
-        (click)="setSelectedPlanetById(planet.id)"
-      >
-        {{ planet.name }}
-      </p>
+<div class="character-container">
+  <div class="character-list">
+    <div
+      class="character__item"
+      *ngFor="let character of characters$ | async"
+      (click)="selectCharacter(character.id!)"
+    >
+      <img class="character__img" [src]="character.image" alt="" />
+      <p c>{{ character.name }}</p>
     </div>
+  </div>
+  <div class="character-details">
+    <app-character-details></app-character-details>
   </div>
 </div>

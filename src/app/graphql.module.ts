@@ -3,10 +3,10 @@ import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 
-const uri = 'https://swapi-graphql.netlify.app/.netlify/functions/index'; // <-- add the URL of the GraphQL server here
+const uri = 'https://rickandmortyapi.com/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   return {
-    link: httpLink.create({uri}),
+    link: httpLink.create({ uri }),
     cache: new InMemoryCache(),
   };
 }

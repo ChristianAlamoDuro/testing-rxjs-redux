@@ -1,0 +1,15 @@
+<ng-container *ngIf="character$ | async as character; else notCharacter">
+  <div class="character-form" *ngIf="characterForm$ | async as characterForm">
+    <form [formGroup]="characterForm">
+      <div class="form-group">
+        <label for="">Nombre</label>
+        <input class="form-control" type="text" formControlName="name" />
+      </div>
+
+      <button (click)="modifyCharacter(characterForm)">Enviar</button>
+    </form>
+  </div>
+</ng-container>
+<ng-template #notCharacter>
+  <p>No hay personaje</p>
+</ng-template>

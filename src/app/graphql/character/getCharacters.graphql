@@ -1,0 +1,13 @@
+query getCharacters {
+  characters {
+    results {
+      id
+      name
+      image
+      episode {
+        id
+        name
+      }
+    }
+  }
+}

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import {
-  getPlanets,
-  userSelectPlanetById
-} from 'src/app/core/store/planet/planet.actions';
-import { PlanetNormalized } from 'src/app/core/store/planet/planet.reducer';
-import { selectAllPlanets } from 'src/app/core/store/planet/planet.selectors';
+  getCharacters,
+  selectCharacterById
+} from 'src/app/core/store/character/character.actions';
+import { selectAllCharacters } from 'src/app/core/store/character/character.selectors';
 
 @Component({
   selector: 'app-home',
@@ -14,20 +13,17 @@ import { selectAllPlanets } from 'src/app/core/store/planet/planet.selectors';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  planets$!: Observable<PlanetNormalized[]>;
+  characters$!: Observable<Character[]>;
 
   constructor(private _store: Store) {}
 
   ngOnInit(): void {
-    this._store.dispatch(getPlanets({}));
+    this._store.dispatch(getCharacters({}));
 
-    this.planets$ = this._store.pipe(
-      select(selectAllPlanets),
-      tap((i) => console.log(i))
-    );
+    this.characters$ = this._store.pipe(select(selectAllCharacters));
   }
 
-  setSelectedPlanetById(planetId: string): void {
-    this._store.dispatch(userSelectPlanetById({ planetId }));
+  selectCharacter(characterId: string): void {
+    this._store.dispatch(selectCharacterById({ id: characterId }));
   }
 }

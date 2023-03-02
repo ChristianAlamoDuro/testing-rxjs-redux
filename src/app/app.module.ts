@@ -7,8 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlanetEffects } from './core/store/planet/planet.effects';
-import * as planetReducer from './core/store/planet/planet.reducer';
+import { CharacterEffects } from './core/store/character/character.effects';
+import * as characterReducer from './core/store/character/character.reducer';
 import { GraphQLModule } from './graphql.module';
 import { NgrxModule } from './modules/ngrx/ngrx.module';
 import { Test1Module } from './modules/test1/test1.module';
@@ -25,15 +25,13 @@ import { Test2Module } from './modules/test2/test2.module';
     NgrxModule,
     StoreModule.forRoot(
       {
-        planet: planetReducer.reducer,
+        character: characterReducer.reducer,
       },
       {}
     ),
     // StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     StoreDevtoolsModule.instrument({}),
-    EffectsModule.forRoot([
-      PlanetEffects
-    ]),
+    EffectsModule.forRoot([CharacterEffects]),
     GraphQLModule,
   ],
   providers: [],
