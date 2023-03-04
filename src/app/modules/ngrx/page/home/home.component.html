@@ -1,12 +1,22 @@
 <div class="character-container">
-  <div class="character-list">
-    <div
-      class="character__item"
-      *ngFor="let character of characters$ | async"
-      (click)="selectCharacter(character.id!)"
-    >
-      <img class="character__img" [src]="character.image" alt="" />
-      <p c>{{ character.name }}</p>
+  <div class="character-list-containe">
+    <div class="form-group">
+      <label for="">Filtro nombre local</label>
+      <input type="text" [formControl]="searchByNameControl" />
+    </div>
+    <div class="form-group">
+      <label for="">Filtro nombre (back)</label>
+      <input type="text" [formControl]="searchByNameWithBackControl" />
+    </div>
+    <div class="character-list">
+      <div
+        class="character__item"
+        *ngFor="let character of characters$ | async"
+        (click)="selectCharacter(character.id!)"
+      >
+        <img class="character__img" [src]="character.image" alt="" />
+        <p c>{{ character.name }}</p>
+      </div>
     </div>
   </div>
   <div class="character-details">

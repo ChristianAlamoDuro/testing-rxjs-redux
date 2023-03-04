@@ -25,7 +25,7 @@ export class CharacterDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.character$ = this._store.pipe(
-      select(selectCharacterSelectedByUser, { characterId: 1 })
+      select(selectCharacterSelectedByUser)
     );
 
     this.characterForm$ = this.character$.pipe(
