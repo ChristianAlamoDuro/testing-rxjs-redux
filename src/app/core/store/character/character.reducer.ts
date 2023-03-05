@@ -1,6 +1,8 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 import {
+  filterCharacterByName,
+  filterCharacterByNameSuccessfully,
   getCharacters,
   getCharactersSuccessfully,
   modifyCharacter,
@@ -38,6 +40,10 @@ const characterReducer = createReducer(
   on(modifyCharacter, (state) => ({ ...state, loading: true })),
   on(modifyCharacterSuccessfully, (state, { character }) =>
     characterAdapter.upsertOne(character, { ...state, loading: false })
+  ),
+  on(filterCharacterByName, (state) => ({ ...state, loading: true })),
+  on(filterCharacterByNameSuccessfully, (state, { characters }) =>
+    characterAdapter.setAll(characters, { ...state, loading: false })
   )
 );
 

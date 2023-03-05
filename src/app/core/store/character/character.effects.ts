@@ -5,6 +5,8 @@ import { GraphQLNormalizr } from 'graphql-normalizr';
 import { Observable, switchMap } from 'rxjs';
 import { GetCharactersGQL } from 'src/app/graphql';
 import {
+  filterCharacterByName,
+  filterCharacterByNameSuccessfully,
   getCharacters,
   getCharactersSuccessfully,
   modifyCharacter,
@@ -51,6 +53,24 @@ export class CharacterEffects {
         return [
           modifyCharacterSuccessfully({
             character: newCharacter,
+          }),
+        ];
+      })
+    )
+  );
+
+  filterCharacterByName$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(filterCharacterByName),
+      switchMap(({ name }) =>
+        this._getCharactersGQL.fetch({ filter: { name } })
+      ),
+      switchMap((results) => {
+        const { characters } = normalize(results);
+
+        return [
+          filterCharacterByNameSuccessfully({
+            characters: characters || [],
           }),
         ];
       })

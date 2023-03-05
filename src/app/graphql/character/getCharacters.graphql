@@ -1,5 +1,5 @@
-query getCharacters {
-  characters {
+query getCharacters($filter: FilterCharacter) {
+  characters(filter: $filter) {
     results {
       id
       name

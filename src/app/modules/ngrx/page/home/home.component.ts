@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { combineLatest, map, Observable, startWith } from 'rxjs';
 import {
+  combineLatest, debounceTime,
+  map,
+  Observable,
+  startWith
+} from 'rxjs';
+import {
+  filterCharacterByName,
   getCharacters,
   selectCharacterById
 } from 'src/app/core/store/character/character.actions';
@@ -28,7 +34,6 @@ export class HomeComponent implements OnInit {
       characters: this._store.pipe(select(selectAllCharacters)),
     }).pipe(
       map(({ searchValue, characters }) => {
-        console.log('1');
         if (searchValue) {
           return characters.filter((character) =>
             character.name!.toLowerCase().includes(searchValue.toLowerCase())
@@ -39,10 +44,14 @@ export class HomeComponent implements OnInit {
       })
     );
 
-    this.searchByNameWithBackControl.valueChanges.pipe().subscribe((value) => {
-      this.searchByNameControl.setValue(null);
-      console.log('2');
-    });
+    this.searchByNameWithBackControl.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe((value) => {
+        this.searchByNameControl.setValue(null);
+        this._store.dispatch(
+          filterCharacterByName({ name: value.toLowerCase() })
+        );
+      });
   }
 
   selectCharacter(characterId: string): void {

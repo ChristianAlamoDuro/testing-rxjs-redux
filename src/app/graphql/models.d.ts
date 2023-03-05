@@ -199,7 +199,9 @@ type QueryLocationsByIdsArgs = {
 };
 
 
-type GetCharactersQueryVariables = Exact<{ [key: string]: never; }>;
+type GetCharactersQueryVariables = Exact<{
+  filter?: Maybe<FilterCharacter>;
+}>;
 
 
 type GetCharactersQuery = (

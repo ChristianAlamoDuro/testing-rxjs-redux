@@ -31,3 +31,17 @@ export const modifyCharacterSuccessfully = createAction(
   '[Character] modify characters successfully',
   props<{ character: Character }>()
 );
+
+export const filterCharacterByName = createAction(
+  '[Character] filter characters',
+  props<{
+    name: string;
+  }>()
+);
+
+export const filterCharacterByNameSuccessfully = createAction(
+  '[Character] filter characters successfully',
+  props<{
+    characters: Character[] | [];
+  }>()
+);
